@@ -12,16 +12,15 @@ as.enrichResult <- function(result, inputIds, geneSet) {
   result$GeneRatio <- paste(result$Count, '/', gene.length, sep = '')
   result$size <- result$Count
   result$ID <- result$Description
-  
-  rownames(result) <- result$Description
 
   geneSetsOI <- geneSet[c(result$Description)]
   genesInGeneSet <- lapply(geneSetsOI, intersect, y=gene)
   genesInGeneSet.stack <- stack(genesInGeneSet) %>% 
-    rename(ind = 'Descriptions') %>% group_by(Descriptions) %>% 
-    #group_by(ind) %>% 
+    rename(ind = 'Description') %>% group_by(Description) %>%
     summarise(geneID = paste(values, collapse = '/'))
+
   result <- merge(result, genesInGeneSet.stack, by = 'Description')
+  rownames(result) <- result$Description
 
   new('enrichResult',
       result         = result, 
