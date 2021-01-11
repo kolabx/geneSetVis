@@ -2,7 +2,7 @@ runSTRINGdb <- function(DEtable, geneCol, maxHitsToPlot = 200, refSpeciesNum = 9
   #DEtable <- geneList
   #geneCol <- 'gene'
   string_db <- STRINGdb::STRINGdb$new(
-      version = '10',
+      version = '11',
       species = refSpeciesNum,
       score_threshold = scoreThreshold,
       input_directory = cachedir
@@ -37,7 +37,7 @@ runSTRINGdb <- function(DEtable, geneCol, maxHitsToPlot = 200, refSpeciesNum = 9
 
 
 			#deprecated in string version 11
-			hit_term_proteins <- string_db$get_term_proteins(enrichmentGO$term_id, hits)
+			hit_term_proteins <- string_db$get_annotations(enrichmentGO$term_id, hits)
 			hit_term_genes <- hit_term_proteins %>%
 				dplyr::select(term_id, preferred_name) %>%
 				dplyr::group_by(term_id) %>%
@@ -46,7 +46,7 @@ runSTRINGdb <- function(DEtable, geneCol, maxHitsToPlot = 200, refSpeciesNum = 9
 			enrichmentGO <- merge(hit_term_genes, enrichmentGO)
 
 			#deprecated in string version 11
-			hit_term_proteins <- string_db$get_term_proteins(enrichmentKEGG$term_id, hits)
+			hit_term_proteins <- string_db$get_annotations(enrichmentKEGG$term_id, hits)
 			hit_term_genes <- hit_term_proteins %>%
 				dplyr::select(term_id, preferred_name) %>%
 				dplyr::group_by(term_id) %>%
