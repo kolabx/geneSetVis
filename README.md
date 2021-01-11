@@ -4,7 +4,7 @@ geneSetVis is a interactive shiny app for the exploration and visualization of e
 
 **Installation:**
   ```
-  devtools::install_github("kolabx/geneSetVis@r4", dependencies = T, upgrade = "always")
+  devtools::install_github("kolabx/geneSetVis@R4.0", dependencies = T, upgrade = "always")
   
   #launch app
   geneSetVis::launchGeneSetVis()
