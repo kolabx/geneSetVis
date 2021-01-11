@@ -142,9 +142,9 @@ stringdbModule <- function(session, input, output, envir, appDiskCache) {
 	  num_genes_mapped <- sum(!is.na(envir$stringdbRes[['hits']]))
 	  HTML(
 	    '<b>Mapped genes</b><br>',
-	    paste0(num_genes_mapped, ' out of ', length(envir$geneList[[input$stringdb_selectGeneCol]]), ' genes were mapped.'),
-	    '<p>',
-	    hyperlink_text(href_base = envir$stringdbRes[['link']], link_text = 'View mapped genes on string-db website', href_cont = NULL)
+	    paste0(num_genes_mapped, ' out of ', length(envir$geneList[[input$stringdb_selectGeneCol]]), ' genes were mapped.')#,
+	    #'<p>',
+	    #hyperlink_text(href_base = envir$stringdbRes[['link']], link_text = 'View mapped genes on string-db website', href_cont = NULL)
 	  )
 	})
 
@@ -193,7 +193,7 @@ stringdbModule <- function(session, input, output, envir, appDiskCache) {
 	      'Genes in Term' = preferredNames
 	    )
 	    
-	  table$'Term Description' <- gsub(pattern = 'GO.', replacement = 'GO:', x = table$'Term Description')
+	  table$'Term Description' <- gsub(pattern = 'GO.', replacement = 'GO:', x = table$'Term ID')
 
 	  makeTermsTable(
 	    table = table,

@@ -228,7 +228,7 @@ server = function(input, output, session) {
         #   file.copy('intdata/template_report.Rmd', paste0(envir$cachedir, "/geneSetVis-exports", "/template_report.Rmd"))
         # }
         # Sys.sleep(5)
-        if (exists('gsvis_package')) {
+        if ('gsvis_package' == TRUE) {
           report_template <- system.file('app/intdata/template_report.Rmd', package = 'geneSetVis')
           report_cache <- system.file('app/intdata/template_report_cache', package = 'geneSetVis')
         } else {
@@ -241,8 +241,8 @@ server = function(input, output, session) {
           output_format = 'html_clean',
           #intermediates_dir = paste0(envir$cachedir, "/geneSetVis-exports"),
           #output_dir = paste0(envir$cachedir, "/geneSetVis-exports"),
-          output_dir = paste0(report_cache),
-          output_file = paste0(runname)
+          output_dir = report_cache,
+          output_file = runname
         )
         file.copy(output_path, file)
         unlink(report_cache, recursive = T)
