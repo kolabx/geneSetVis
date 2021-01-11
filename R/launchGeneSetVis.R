@@ -36,7 +36,7 @@ launchGeneSetVis <- function(...) {
   # runApp(appDir = system.file("app", package = "geneSetVis"),
   #               ...)
 
-  shinyAppDir(appDir = system.file("app", package = "geneSetVis"))
+  shinyAppDir(appDir = system.file("app", package = "geneSetVis"), options = list(launch.browser = TRUE))
 
   }
 

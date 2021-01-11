@@ -188,7 +188,7 @@ stringdbModule <- function(session, input, output, envir, appDiskCache) {
 	      'Term ID' = term,
 	      'Hits' = number_of_genes,
 	      'p-Value' = p_value,
-	      'Background' = number_of_genes_in_background,
+	      'Background Genes' = number_of_genes_in_background,
 	      'p-Value (adj.)' = fdr,
 	      'Genes in Term' = preferredNames
 	    )
@@ -200,8 +200,7 @@ stringdbModule <- function(session, input, output, envir, appDiskCache) {
 	    genesDelim = ',',
 	    datasetURL = "https://www.ebi.ac.uk/QuickGO/term/",
 	    caption = NULL,
-	    #includeColumns = c('Term Description', 'Hits', 'Background Genes', 'p-Value (adj.)', 'p-Value', 'Genes in Term')
-	    includeColumns = c('Term Description', 'Proteins', 'Hits', 'p-Value (adj.)', 'p-Value', 'Genes in Term')
+	    includeColumns = c('Term Description', 'Hits', 'Background Genes', 'p-Value (adj.)', 'p-Value', 'Genes in Term')
 	  )
 
 	})
@@ -217,7 +216,7 @@ stringdbModule <- function(session, input, output, envir, appDiskCache) {
 	      'Term ID' = term,
 	      'Hits' = number_of_genes,
 	      'p-Value' = p_value,
-	      'Background' = number_of_genes_in_background,
+	      'Background Genes' = number_of_genes_in_background,
 	      'p-Value (adj.)' = fdr,
 	      'Genes in Term' = preferredNames
 	    )
@@ -227,8 +226,7 @@ stringdbModule <- function(session, input, output, envir, appDiskCache) {
 	    genesDelim = ',',
 	    datasetURL = "https://www.genome.jp/dbget-bin/www_bget?map",
 	    caption = NULL,
-	    #includeColumns = c('Term Description', 'Hits', 'Background Genes', 'p-Value (adj.)', 'p-Value', 'Genes in Term')
-	    includeColumns = c('Term Description', 'Proteins', 'Hits', 'p-Value (adj.)', 'p-Value', 'Genes in Term')
+	    includeColumns = c('Term Description', 'Hits', 'Background Genes', 'p-Value (adj.)', 'p-Value', 'Genes in Term')
 	  )
 	})
 

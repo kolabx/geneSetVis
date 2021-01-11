@@ -199,14 +199,14 @@ server = function(input, output, session) {
     if (isTruthy(input$fileInput$name)) {
       tools::file_path_sans_ext(basename(input$fileInput$name))
     } else {
-      paste0("geneSetVis", ".html")
+      paste0("geneSetVis")
       #paste0("geneSetVis-",gsub(":","-",Sys.Date()), ".html")
     }
   })
 
   output$downloadReport <- downloadHandler(
     filename = function() {
-      paste0(runname(), '_geneSetVis_Report.html')
+      paste0(runname(), '_Report.html')
     },
     content = function(file) {
       withProgress(message = 'Downloading...', {
@@ -242,7 +242,7 @@ server = function(input, output, session) {
           #intermediates_dir = paste0(envir$cachedir, "/geneSetVis-exports"),
           #output_dir = paste0(envir$cachedir, "/geneSetVis-exports"),
           output_dir = paste0(report_cache),
-          output_file = paste0(runname, '_Report.html')
+          output_file = paste0(runname)
         )
         file.copy(output_path, file)
         unlink(report_cache, recursive = T)
