@@ -30,6 +30,7 @@ Imports:
     formattable,
     ggplot2,
     ggupset,
+    ggnewscale,
     knitr,
     org.Hs.eg.db,
     org.Mm.eg.db,
