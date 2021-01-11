@@ -42,8 +42,7 @@ makeTermsTable <- function(table, genesDelim,
   }
 }
 
-# TODO: download entire dataset:
-# server = FALSE
+
 renderPlotSet <- function(output, key, enrichTypeResult, datasetURL, datasetName = NULL, caption = NULL, namedGeneList = NULL) {
   output[[paste(key, 'table', sep = '_')]] <- DT::renderDataTable({
     er <- enrichTypeResult()

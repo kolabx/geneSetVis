@@ -570,4 +570,3 @@ makeTermsTable(
 options('max.print' = 500)
 sessionInfo()
 ```
-

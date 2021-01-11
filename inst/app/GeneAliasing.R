@@ -376,4 +376,3 @@ TranslateGeneNames <- function(ensemblIds = NULL, geneSymbols = NULL, davidEmail
   return(inputDf)
 }
 
-

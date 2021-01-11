@@ -111,7 +111,7 @@ msigdbModule <- function(session, input, output, envir, appDiskCache) {
 	observeEvent(input$msigdb_category_input, {
 		req(input$msigdb_category_input)
 
-		#NOTE: these do not appear to be specieis-specific, at least on the website.  This call introduces a lot of lag time
+		#NOTE: these do not appear to be species-specific, at least on the website.  This call introduces a lot of lag time
 		#species.msig <- msigdbr::msigdbr(species = input$msigdbr_species_input)
 
 		subcat <- msigdbCategories[msigdbCategories$Category == input$msigdb_category_input,]

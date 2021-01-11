@@ -16,8 +16,7 @@ getEnrichResGeneID <- function(gseResult, idCol, idColName, gseGenes, geneSet) {
 as.enrichResult <- function( gseType = 'GSE', gseResult, gseGenes, idCol, descCol = idCol, geneIDCol, countCol, pvalCol, padjCol, geneRatioCol,
                             bgRatioCol = NULL,  qvalCol = NULL, pvalueCutoff = 0.05, pAdjustMethod = '', qvalueCutoff = 0,
                             universe = '', geneSets = list(), organism = '', keytype = '', ontology = '', readable = T) {
-
-  #if (nrow(gseResult) == 0) {stop(paste0('No terms in ', gseType, ' result.'))}
+  
   if (nrow(gseResult) != 0) {
     result <- NULL
     result$ID <- idCol
@@ -38,7 +37,6 @@ as.enrichResult <- function( gseType = 'GSE', gseResult, gseGenes, idCol, descCo
   } else {
     result <- data.frame(NULL)
   }
-
 
 
   new(

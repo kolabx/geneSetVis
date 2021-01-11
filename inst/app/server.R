@@ -220,15 +220,10 @@ server = function(input, output, session) {
         ncgRes <- envir$ncgRes
         enrichrRes <- envir$enrichrRes
         namedGeneList <- envir$namedGeneList
-
-
-        # if (exists('gsvis_package')) {
-        #   file.copy(system.file('app/intdata/template_report.Rmd', package = 'geneSetVis'), paste0(envir$cachedir, "/geneSetVis-exports", "/template_report.Rmd"))
-        # } else {
-        #   file.copy('intdata/template_report.Rmd', paste0(envir$cachedir, "/geneSetVis-exports", "/template_report.Rmd"))
-        # }
-        # Sys.sleep(5)
-        if ('gsvis_package' == TRUE) {
+        
+        
+        
+        if(exists('gsvis_package')) {
           report_template <- system.file('app/intdata/template_report.Rmd', package = 'geneSetVis')
           report_cache <- system.file('app/intdata/template_report_cache', package = 'geneSetVis')
         } else {

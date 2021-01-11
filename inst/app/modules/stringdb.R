@@ -86,7 +86,6 @@ runSTRINGdb <- function(DEtable, geneCol, maxHitsToPlot = 200, refSpeciesNum = 9
 
 stringdbModule <- function(session, input, output, envir, appDiskCache) {
 
-	#NOTE: this should reset our tab whenever the input genes change
 	observeEvent(list(envir$geneList), ignoreInit = F, {
 		print('resetting stringdb')
 	  envir$stringdbRes <- NULL
@@ -175,9 +174,8 @@ stringdbModule <- function(session, input, output, envir, appDiskCache) {
 	  plot_png
 
 	})
-
-	# TODO: download entire dataset
-	# server = FALSE
+	
+	
 	output$stringdb_GO <- DT::renderDataTable({
 	  validate(need(!is.null(envir$stringdbRes$GO), ""))
 	  #validate(need(!is.null(envir$stringdbRes$GO) | nrow(envir$stringdbRes$GO) != 0, ""))
@@ -204,9 +202,8 @@ stringdbModule <- function(session, input, output, envir, appDiskCache) {
 	  )
 
 	})
-
-	# TODO: download entire dataset
-	# server = FALSE
+	
+	
 	output$stringdb_KEGG <- DT::renderDataTable({
 		validate(need(!is.null(envir$stringdbRes$KEGG) | nrow(envir$stringdbRes$KEGG) != 0, ""))
 	  toSubset <- paste('KEGG', sep = '')

@@ -1,7 +1,6 @@
 
 enrichrModule <- function(session, input, output, envir, appDiskCache) {
-
-  #NOTE: this should reset our tab whenever the input genes change
+  
   observeEvent(list(envir$geneList), ignoreInit = F, {
     print('resetting enrichr')
     envir$enrichrRes <- NULL
@@ -13,7 +12,7 @@ enrichrModule <- function(session, input, output, envir, appDiskCache) {
   observeEvent(input$runenrichr_button, {
     withBusyIndicatorServer("runenrichr_button", {
       Sys.sleep(1)
-      #TODO: validate input present?
+      
       validate(need(input$enrichr_db != '', "Please select database(s)..."))
 
       print('making enrichr query')

@@ -15,8 +15,7 @@ runNCG <- function(DEtable, geneCol, species) {
 }
 
 ncgModule <- function(session, input, output, envir, appDiskCache) {
-
-  #NOTE: this should reset our tab whenever the input genes change
+  
   observeEvent(list(envir$geneList), ignoreInit = F, {
     print('resetting ncg')
     envir$ncgRes <- NULL
@@ -27,7 +26,7 @@ ncgModule <- function(session, input, output, envir, appDiskCache) {
   observeEvent(input$runncg_button, {
     withBusyIndicatorServer("runncg_button", {
       Sys.sleep(1)
-      #TODO: validate input present?
+      
       validate(need(input$ncg_OrgDB_input != '', "Please select OrgDB..."))
 
       print('making ncg query')
@@ -36,8 +35,8 @@ ncgModule <- function(session, input, output, envir, appDiskCache) {
         cacheVal <- appDiskCache$get(cacheKey)
         if (class(cacheVal) == 'key_missing') {
           print('missing cache key...')
-
-          #if (!require(input$ncg_OrgDB_input)) install.packages(input$ncg_OrgDB_input)
+          
+          
           envir$ncgRes <- NULL
           fromType <- ifelse(grepl('id', input$ncg_selectGeneCol), 'ENSEMBL', 'SYMBOL')
           entrezIDs <- clusterProfiler::bitr(geneID = envir$geneList[[input$ncg_selectGeneCol]], fromType=fromType, toType="ENTREZID", OrgDb=input$ncg_OrgDB_input)

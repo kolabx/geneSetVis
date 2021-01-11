@@ -2,7 +2,6 @@
 tab_load_data <- shinydashboard::tabItem(
   tabName = 'loadData',
   fluidRow(
-    #column = 6,
     shinydashboard::box(
       title = 'Input Gene List',
       status = 'primary',

@@ -15,8 +15,7 @@ runDGN <- function(DEtable, geneCol, species) {
 }
 
 dgnModule <- function(session, input, output, envir, appDiskCache) {
-
-  #NOTE: this should reset our tab whenever the input genes change
+  
   observeEvent(list(envir$geneList), ignoreInit = F, {
     print('resetting dgn')
     envir$dgnRes <- NULL
@@ -27,7 +26,7 @@ dgnModule <- function(session, input, output, envir, appDiskCache) {
   observeEvent(input$rundgn_button, {
     withBusyIndicatorServer("rundgn_button", {
       Sys.sleep(1)
-      #TODO: validate input present?
+      
       validate(need(input$dgn_OrgDB_input != '', "Please select OrgDB..."))
 
       print('making dgn query')
@@ -36,8 +35,7 @@ dgnModule <- function(session, input, output, envir, appDiskCache) {
         cacheVal <- appDiskCache$get(cacheKey)
         if (class(cacheVal) == 'key_missing') {
           print('missing cache key...')
-
-          #if (!require(input$dgn_OrgDB_input)) install.packages(input$dgn_OrgDB_input)
+          
           envir$dgnRes <- NULL
           fromType <- ifelse(grepl('id', input$dgn_selectGeneCol), 'ENSEMBL', 'SYMBOL')
           entrezIDs <- clusterProfiler::bitr(geneID = envir$geneList[[input$dgn_selectGeneCol]], fromType=fromType, toType="ENTREZID", OrgDb=input$dgn_OrgDB_input)

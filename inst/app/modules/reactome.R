@@ -15,8 +15,7 @@ runReactomePA <- function(DEtable, geneCol, species) {
 }
 
 reactomeModule <- function(session, input, output, envir, appDiskCache) {
-
-	#NOTE: this should reset our tab whenever the input genes change
+  
 	observeEvent(list(envir$geneList), ignoreInit = F, {
 		print('resetting reactome')
 		envir$reactomeRes <- NULL
@@ -27,7 +26,6 @@ reactomeModule <- function(session, input, output, envir, appDiskCache) {
 	observeEvent(input$runreactome_button, {
 	  withBusyIndicatorServer("runreactome_button", {
 	    Sys.sleep(1)
-	    #TODO: validate input present?
 	    validate(need(input$reactome_OrgDB_input != '', "Please select OrgDB..."))
 
 	    print('making Reactome query')

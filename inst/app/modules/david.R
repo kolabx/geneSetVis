@@ -15,8 +15,7 @@ runDAVID <- function(DEtable, geneCol, species) {
 }
 
 davidModule <- function(session, input, output, envir, appDiskCache) {
-
-  #NOTE: this should reset our tab whenever the input genes change
+  
   observeEvent(list(envir$geneList), ignoreInit = F, {
     print('resetting david')
     envir$davidRes <- NULL
@@ -27,7 +26,7 @@ davidModule <- function(session, input, output, envir, appDiskCache) {
   observeEvent(input$rundavid_button, {
     withBusyIndicatorServer("rundavid_button", {
       Sys.sleep(1)
-      #TODO: validate input present?
+      
       validate(need(input$david_OrgDB_input != '', "Please select OrgDB..."))
 
       print('making david query')
@@ -36,8 +35,7 @@ davidModule <- function(session, input, output, envir, appDiskCache) {
         cacheVal <- appDiskCache$get(cacheKey)
         if (class(cacheVal) == 'key_missing') {
           print('missing cache key...')
-
-          #if (!require(input$david_OrgDB_input)) install.packages(input$david_OrgDB_input)
+          
           envir$davidRes <- NULL
           fromType <- ifelse(grepl('id', input$david_selectGeneCol), 'ENSEMBL', 'SYMBOL')
           entrezIDs <- clusterProfiler::bitr(geneID = envir$geneList[[input$david_selectGeneCol]], fromType=fromType, toType="ENTREZID", OrgDb=input$david_OrgDB_input)

@@ -30,12 +30,8 @@
 #' @import enrichR
 #'
 launchGeneSetVis <- function(...) {
-  # for source() if from package of user dir
   gsvis_package <<- TRUE
   ## run app does not work w shiny-server
-  # runApp(appDir = system.file("app", package = "geneSetVis"),
-  #               ...)
-
   shinyAppDir(appDir = system.file("app", package = "geneSetVis"), options = list(launch.browser = TRUE))
 
   }
