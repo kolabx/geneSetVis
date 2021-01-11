@@ -31,13 +31,13 @@ runSTRINGdb <- function(DEtable, geneCol, maxHitsToPlot = 200, refSpeciesNum = 9
 
 			max_hits_to_plot <- cluster.map$STRING_id[1:maxHitsToPlot]
 			
-			enrichments <- string_db$get_annotations(hits)
-			enrichmentGO <- enrichments %>% filter(category == "Process")
-			enrichmentKEGG <- enrichments %>% filter(category == "KEGG")
+			#enrichments <- string_db$get_annotations(hits)
+			#enrichmentGO <- enrichments %>% filter(category == "Process")
+			#enrichmentKEGG <- enrichments %>% filter(category == "KEGG")
 
 			#string11 bug: setting category does not change the default 'Process'
-			#enrichmentGO <- string_db$get_enrichment(hits, category = 'Process')
-			#enrichmentKEGG <- string_db$get_enrichment(hits, category = 'KEGG')
+			enrichmentGO <- string_db$get_enrichment(hits, category = 'Process')
+			enrichmentKEGG <- string_db$get_enrichment(hits, category = 'KEGG')
 			
 			#______
 			##payload mechanism for upregulated vs downregulated genes:
@@ -184,23 +184,15 @@ stringdbModule <- function(session, input, output, envir, appDiskCache) {
 	  toSubset <- paste('GO', sep = '')
 	  table <- envir$stringdbRes[[toSubset]] %>%
 	    dplyr::rename(
-	      'Term Description' = term_description,
-	      'Term ID' = term_id,
-	      'Hits' = hits,
-	      'p-Value' = pvalue,
-	      'Proteins' = proteins,
-	      'p-Value (adj.)' = pvalue_fdr,
-	      'Genes in Term' = hit_term_genes
+	      'Term Description' = description,
+	      'Term ID' = term,
+	      'Hits' = number_of_genes,
+	      'p-Value' = p_value,
+	      'Background' = number_of_genes_in_background,
+	      'p-Value (adj.)' = fdr,
+	      'Genes in Term' = preferredNames
 	    )
-	    # dplyr::rename(
-	    #   'Term Description' = description,
-	    #   'Term ID' = term,
-	    #   'Hits' = number_of_genes,
-	    #   'Background Genes' = number_of_genes_in_background,
-	    #   'p-Value' = p_value,
-	    #   'p-Value (adj.)' = fdr,
-	    #   'Genes in Term' = preferredNames
-	    # )
+	    
 	  table$'Term Description' <- gsub(pattern = 'GO.', replacement = 'GO:', x = table$'Term Description')
 
 	  makeTermsTable(
@@ -221,23 +213,14 @@ stringdbModule <- function(session, input, output, envir, appDiskCache) {
 	  toSubset <- paste('KEGG', sep = '')
 	  table <- envir$stringdbRes[[toSubset]] %>%
 	    dplyr::rename(
-	      'Term Description' = term_description,
-	      'Term ID' = term_id,
-	      'Hits' = hits,
-	      'Proteins' = proteins,
-	      'p-Value' = pvalue,
-	      'p-Value (adj.)' = pvalue_fdr,
-	      'Genes in Term' = hit_term_genes
+	      'Term Description' = description,
+	      'Term ID' = term,
+	      'Hits' = number_of_genes,
+	      'p-Value' = p_value,
+	      'Background' = number_of_genes_in_background,
+	      'p-Value (adj.)' = fdr,
+	      'Genes in Term' = preferredNames
 	    )
-	    # dplyr::rename(
-	    #   'Term Description' = description,
-	    #   'Term ID' = term,
-	    #   'Hits' = number_of_genes,
-	    #   'Background Genes' = number_of_genes_in_background,
-	    #   'p-Value' = p_value,
-	    #   'p-Value (adj.)' = fdr,
-	    #   'Genes in Term' = preferredNames
-	    # )
 
 	  makeTermsTable(
 	    table = table,
