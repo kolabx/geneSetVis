@@ -193,7 +193,7 @@ stringdbModule <- function(session, input, output, envir, appDiskCache) {
 	      'Genes in Term' = preferredNames
 	    )
 	    
-	  #table$'Term Description' <- gsub(pattern = 'GO.', replacement = 'GO:', x = table$'Term Description')
+	  table$'Term Description' <- gsub(pattern = 'GO.', replacement = 'GO:', x = table$'Term Description')
 
 	  makeTermsTable(
 	    table = table,
