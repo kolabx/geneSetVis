@@ -30,36 +30,15 @@ runSTRINGdb <- function(DEtable, geneCol, maxHitsToPlot = 200, refSpeciesNum = 9
 			if ( sum(!is.na(hits)) == 0 ) {stop('No mapped genes.')}
 
 			max_hits_to_plot <- cluster.map$STRING_id[1:maxHitsToPlot]
+			
+			enrichments <- string_db$get_annotations(hits)
+			enrichmentGO <- enrichments %>% filter(category == "Process")
+			enrichmentKEGG <- enrichments %>% filter(category == "KEGG")
 
-			enrichmentGO <- string_db$get_enrichment(hits, category = 'Process')
-
-			enrichmentKEGG <- string_db$get_enrichment(hits, category = 'KEGG')
-
-
-			#deprecated in string version 11
-			hit_term_proteins <- string_db$get_annotations(enrichmentGO$term_id, hits)
-			hit_term_genes <- hit_term_proteins %>%
-				dplyr::select(term_id, preferred_name) %>%
-				dplyr::group_by(term_id) %>%
-				dplyr::summarize('hit_term_genes' = paste0(preferred_name, collapse = ','))
-
-			enrichmentGO <- merge(hit_term_genes, enrichmentGO)
-
-			#deprecated in string version 11
-			hit_term_proteins <- string_db$get_annotations(enrichmentKEGG$term_id, hits)
-			hit_term_genes <- hit_term_proteins %>%
-				dplyr::select(term_id, preferred_name) %>%
-				dplyr::group_by(term_id) %>%
-				dplyr::summarize('hit_term_genes' = paste0(preferred_name, collapse = ','))
-
-			enrichmentKEGG <- merge(hit_term_genes, enrichmentKEGG)
-
-
-			#string_db$get_png(max_hits_to_plot, file = paste('network.png', sep = ''))
-
-
-			#network <- string_db$plot_network(max_hits_to_plot)
-
+			#string11 bug: setting category does not change the default 'Process'
+			#enrichmentGO <- string_db$get_enrichment(hits, category = 'Process')
+			#enrichmentKEGG <- string_db$get_enrichment(hits, category = 'KEGG')
+			
 			#______
 			##payload mechanism for upregulated vs downregulated genes:
 			##adds a color column for up vs downregulated genes
