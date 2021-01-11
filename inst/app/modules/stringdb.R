@@ -37,7 +37,7 @@ runSTRINGdb <- function(DEtable, geneCol, maxHitsToPlot = 200, refSpeciesNum = 9
 
 			#string11 bug: setting category does not change the default 'Process'
 			enrichmentGO <- string_db$get_enrichment(hits, category = 'Process')
-			enrichmentKEGG <- string_db$get_enrichment(hits, category = 'KEGG')
+			enrichmentKEGG <- string_db$get_enrichment(hits, category = 'KEGG') %>% filter(category == "KEGG")
 			
 			#______
 			##payload mechanism for upregulated vs downregulated genes:
