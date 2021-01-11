@@ -38,8 +38,9 @@ if (!is.null(stringdbRes) & length(stringdbRes) != 0) {
   link <- NULL
   print('No link available.')
 }
+#[View mapped genes on string-db website](`r link`)
 ```
-[View mapped genes on string-db website](`r link`)
+[Viewing mapped genes on string-db website is currently disabled on STRINGdb latest version.](https://string-db.org/)
 
 ### GO
 ```{r stringdb_go, echo=FALSE}
