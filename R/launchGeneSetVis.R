@@ -31,8 +31,10 @@
 #'
 launchGeneSetVis <- function(...) {
   gsvis_package <<- TRUE
-  ## run app does not work w shiny-server
-  shinyAppDir(appDir = system.file("app", package = "geneSetVis"), options = list(launch.browser = TRUE, host = "0.0.0.0"))
+  shinyAppDir(
+    appDir = system.file("app", package = "geneSetVis"), 
+    options = list(launch.browser = TRUE, host = "0.0.0.0", port = 3838)
+    )
   }
 
 
