@@ -21,9 +21,6 @@ server = function(input, output, session) {
     cachedir <- paste0(sd, "geneSetVis-cache")
   } else {
     sd <- Sys.getenv("TMPDIR")
-    if (substr(sd, nchar(sd), nchar(sd)) != "/") {
-      sd <- paste0(sd, "/")
-    }
     cachedir <- paste0(sd, "geneSetVis-cache")
   }
   print(paste0('cache directory in ', cachedir))
