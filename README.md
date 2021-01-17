@@ -1,5 +1,5 @@
 
-[![R-CMD-check](https://github.com/kolabx/geneSetVis/workflows/R-CMD-check/badge.svg)](https://github.com/kolabx/geneSetVis/actions)
+[![Build](https://github.com/kolabx/geneSetVis/workflows/run-tests/badge.svg)](https://github.com/kolabx/geneSetVis/actions)
 
 # geneSetVis
 geneSetVis is a interactive shiny app for the exploration and visualization of enrichment analysis of sets of genes.
