@@ -13,3 +13,4 @@
 ^tests/
 ^rsconnect/
 ^\.DS_Store$
+^\.github$
